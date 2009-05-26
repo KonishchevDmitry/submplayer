@@ -1,0 +1,427 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Konishchev Dmitry
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: submplayer 0.1\n"
+"Report-Msgid-Bugs-To: konishchev@gmail.com\n"
+"POT-Creation-Date: 2009-05-25 20:52+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/mlib/gtk/glade.cpp:54 src/mlib/gtk/glade.hh:35 src/mlib/gtk/glade.hh:53
+#, qt-format
+msgid "Can't get widget '%1' from glade file '%2'."
+msgstr ""
+
+#: src/mlib/gtk/toolbar.cpp:108
+#, qt-format
+msgid "Invalid toolbar style name '%1'."
+msgstr ""
+
+#: src/mlib/gtk/tree_view.hh:184
+#, qt-format
+msgid "No such column: '%1'."
+msgstr ""
+
+#: src/mlib/async_fs.cpp:251
+msgid "Asynchronous filesystem finished it's work, but not all tasks are processed."
+msgstr ""
+
+#: src/mlib/errors.cpp:99
+#, qt-format
+msgid "%1 at line %2"
+msgstr ""
+
+#: src/mlib/errors.cpp:108
+msgid "torrent is already exists in this session"
+msgstr ""
+
+#: src/mlib/errors.cpp:115
+msgid "bad torrent data"
+msgstr ""
+
+#: src/mlib/errors.cpp:122
+msgid "this is not a torrent file"
+msgstr ""
+
+#: src/mlib/errors.cpp:173 src/mlib/errors.cpp:182
+#, qt-format
+msgid "Exception: '%1'."
+msgstr ""
+
+#: src/mlib/fs.cpp:189
+#, qt-format
+msgid "Can't copy file '%1' to '%2': %3."
+msgstr ""
+
+#: src/mlib/fs.cpp:222
+#, qt-format
+msgid "Error while changing directory '%1' access and modification times. Can't stat directory '%2': %3."
+msgstr ""
+
+#: src/mlib/fs.cpp:236
+#, qt-format
+msgid "Error while changing directory '%1' access and modification times: %2."
+msgstr ""
+
+#: src/mlib/fs.cpp:251 src/mlib/fs.cpp:881
+#, qt-format
+msgid "Can't create directory '%1': %2."
+msgstr ""
+
+#: src/mlib/fs.cpp:282
+#, qt-format
+msgid "Invalid file path '%1'."
+msgstr ""
+
+#: src/mlib/fs.cpp:331
+#, qt-format
+msgid "Invalid file path '%1' - file with such path is already exists."
+msgstr ""
+
+#: src/mlib/fs.cpp:340
+#, qt-format
+msgid "Invalid file path '%1' - file '%2' is already exits."
+msgstr ""
+
+#: src/mlib/fs.cpp:384 src/mlib/fs.cpp:837 src/mlib/fs.cpp:847
+#, qt-format
+msgid "Can't stat '%1': %2."
+msgstr ""
+
+#: src/mlib/fs.cpp:398
+#, qt-format
+msgid "Can't remove file '%1': %2."
+msgstr ""
+
+#: src/mlib/fs.cpp:422
+#, qt-format
+msgid "Can't read directory '%1': %2."
+msgstr ""
+
+#: src/mlib/fs.cpp:426
+#, qt-format
+msgid "Can't remove directory '%1': %2."
+msgstr ""
+
+#: src/mlib/fs.cpp:464
+msgid "parent directory is not exists"
+msgstr ""
+
+#: src/mlib/fs.cpp:801
+msgid "file is already exists"
+msgstr ""
+
+#: src/mlib/fs.cpp:818
+msgid "it is a directory"
+msgstr ""
+
+#: src/mlib/fs.cpp:822
+msgid "it is a special file"
+msgstr ""
+
+#: src/mlib/fs.cpp:833 src/mlib/fs.cpp:843
+#, qt-format
+msgid "No such file or directory ('%1')."
+msgstr ""
+
+#: src/mlib/fs.cpp:912
+#, qt-format
+msgid "Error while copying '%1' to '%2': %3."
+msgstr ""
+
+#: src/mlib/fs.cpp:918 src/mlib/fs.cpp:1073
+#, qt-format
+msgid "Error while reading '%1': %2."
+msgstr ""
+
+#: src/mlib/fs.cpp:954
+msgid "Can't get user home path."
+msgstr ""
+
+#: src/mlib/fs.cpp:994
+#, qt-format
+msgid "file '%1' is already exists"
+msgstr ""
+
+#: src/mlib/fs.cpp:1066
+#, qt-format
+msgid "Can't delete directory '%1': %2."
+msgstr ""
+
+#: src/mlib/fs.cpp:1080
+#, qt-format
+msgid "file or directory '%1' is not exists"
+msgstr ""
+
+#: src/mlib/fs.cpp:1084
+#, qt-format
+msgid "Can't delete file '%1': %2."
+msgstr ""
+
+#: src/mlib/fs.cpp:1187
+msgid "too big link target path"
+msgstr ""
+
+#: src/mlib/fs_watcher.cpp:150
+#, qt-format
+msgid "Can't create an inotify instance: %1."
+msgstr ""
+
+#: src/mlib/fs_watcher.cpp:160
+#, qt-format
+msgid "Error while closing an inotify instance: %1."
+msgstr ""
+
+#: src/mlib/fs_watcher.cpp:337
+msgid "Program has been compiled without inotify support."
+msgstr ""
+
+#: src/mlib/fs_watcher.cpp:356
+#, qt-format
+msgid "Error while removing an inotify watch instance: %1."
+msgstr ""
+
+#: src/mlib/fs_watcher.cpp:403
+#, qt-format
+msgid "Can't read data from inotify descriptor: %1."
+msgstr ""
+
+#: src/mlib/libtorrent.cpp:74
+#, qt-format
+msgid "Invalid torrent file path '%1'."
+msgstr ""
+
+#: src/mlib/libtorrent.cpp:202
+#, qt-format
+msgid "Error while reading torrent file '%1': %2."
+msgstr ""
+
+#: src/mlib/messages.cpp:149
+msgid "Logical error"
+msgstr ""
+
+#: src/mlib/misc.cpp:111
+msgid "[[gettimeofday time getting error]]"
+msgstr ""
+
+#: src/mlib/misc.cpp:176 src/mlib/misc.cpp:238
+msgid "Buffer positioning error."
+msgstr ""
+
+#: src/mlib/misc.cpp:307 src/mlib/misc.cpp:616
+#, qt-format
+msgid "Can't create a pipe: %1."
+msgstr ""
+
+#: src/mlib/misc.cpp:316 src/mplayer.cpp:280 src/mplayer.cpp:298
+#, qt-format
+msgid "Can't set flags for a pipe: %1."
+msgstr ""
+
+#: src/mlib/misc.cpp:324 src/mlib/misc.cpp:327
+#, qt-format
+msgid "Error while closing a pipe: %1."
+msgstr ""
+
+#: src/mlib/misc.cpp:347
+#, qt-format
+msgid "Can't read from a pipe: %1."
+msgstr ""
+
+#: src/mlib/misc.cpp:372
+#, qt-format
+msgid "Can't write to a pipe: %1."
+msgstr ""
+
+#: src/mlib/misc.cpp:393
+#, qt-format
+msgid "Select error: %1."
+msgstr ""
+
+#: src/mlib/misc.cpp:465
+#, qt-format
+msgid "Can't get max opened files limit: %1."
+msgstr ""
+
+#: src/mlib/misc.cpp:483
+#, qt-format
+msgid "Copyright (C) %1-%2 %3."
+msgstr ""
+
+#: src/mlib/misc.cpp:486
+#, qt-format
+msgid "Copyright (C) %1 %2."
+msgstr ""
+
+#: src/mlib/misc.cpp:503
+#, qt-format
+msgid "Realloc failed: %1."
+msgstr ""
+
+#: src/mlib/misc.cpp:547
+#, qt-format
+msgid "Running command '%1' failed: %2."
+msgstr ""
+
+#: src/mlib/misc.cpp:568
+#, qt-format
+msgid "Can't duplicate a file descriptor: %1."
+msgstr ""
+
+#: src/mlib/misc.cpp:604
+#, qt-format
+msgid "Can't fork the process: %1."
+msgstr ""
+
+#: src/mlib/string.cpp:58
+msgid "0m"
+msgstr ""
+
+#: src/mlib/string.cpp:75 src/mlib/string.cpp:116
+msgid "M"
+msgstr ""
+
+#: src/mlib/string.cpp:78 src/mlib/string.cpp:119 src/mlib/string.cpp:128
+msgid "d"
+msgstr ""
+
+#: src/mlib/string.cpp:81 src/mlib/string.cpp:131 src/mlib/string.cpp:139
+msgid "h"
+msgstr ""
+
+#: src/mlib/string.cpp:84 src/mlib/string.cpp:142 src/mlib/string.cpp:150
+msgid "m"
+msgstr ""
+
+#: src/mlib/string.cpp:153 src/mlib/string.cpp:159
+msgid "s"
+msgstr ""
+
+#: src/mlib/string.cpp:200 src/mlib/string.cpp:375 src/mlib/string.hh:194
+#: src/mlib/string.hh:209 src/mlib/string.hh:224 src/mlib/string.hh:239
+#: src/mlib/string.hh:253 src/mlib/string.hh:268 src/mlib/string.hh:283
+#: src/mlib/string.hh:298 src/mlib/string.hh:313 src/mlib/string.hh:328
+#: src/mlib/string.hh:343 src/mlib/string.hh:358 src/mlib/string.hh:373
+#: src/mlib/string.hh:388
+msgid "[[Invalid encoding]]"
+msgstr ""
+
+#: src/mlib/string.cpp:221
+msgid "GB"
+msgstr ""
+
+#: src/mlib/string.cpp:228 src/mlib/string.cpp:238
+msgid "MB"
+msgstr ""
+
+#: src/mlib/string.cpp:245 src/mlib/string.cpp:255
+msgid "KB"
+msgstr ""
+
+#: src/mlib/string.cpp:262 src/mlib/string.cpp:269
+msgid "B"
+msgstr ""
+
+#: src/mlib/string.cpp:289
+msgid "0 B/s"
+msgstr ""
+
+#: src/mlib/string.cpp:294
+msgid "/s"
+msgstr ""
+
+#: src/mlib/string.hh:98 src/mlib/string.hh:127 src/mlib/string.hh:145
+msgid "[[ Invalid format string ]]"
+msgstr ""
+
+#: src/mlib/string.hh:100 src/mlib/string.hh:129 src/mlib/string.hh:147
+msgid "Invalid format string."
+msgstr ""
+
+#: src/main.cpp:82
+#, qt-format
+msgid ""
+"Usage:\n"
+"%1 video_file [other mplayer options]"
+msgstr ""
+
+#: src/main.cpp:201
+#, qt-format
+msgid "Error while reading directory '%1': %2."
+msgstr ""
+
+#: src/main.cpp:220
+#, qt-format
+msgid "Error while reading subtitles file '%1': %2."
+msgstr ""
+
+#: src/main.cpp:237 src/mplayer.cpp:236
+#, qt-format
+msgid "Starting MPlayer failed: %1."
+msgstr ""
+
+#: src/mplayer.cpp:194
+msgid "MPlayer is already started."
+msgstr ""
+
+#: src/mplayer.cpp:240
+#, qt-format
+msgid "Starting MPlayer failed. %1"
+msgstr ""
+
+#: src/mplayer.cpp:261
+#, qt-format
+msgid "Can't get flags for a pipe: %1."
+msgstr ""
+
+#: src/mplayer.cpp:273 src/mplayer.cpp:291
+#, qt-format
+msgid "Can't write data to stdout: %1."
+msgstr ""
+
+#: src/mplayer.cpp:333
+#, qt-format
+msgid "invalid output - no any line delimiter over %1 bytes"
+msgstr ""
+
+#: src/mplayer.cpp:340
+#, qt-format
+msgid "Error while reading MPlayer output: %1."
+msgstr ""
+
+#: src/subtitles.cpp:57
+msgid "[Invalid encoding]"
+msgstr ""
+
+#: src/subtitles.cpp:133
+#, qt-format
+msgid "line %1 is too big"
+msgstr ""
+
+#: src/subtitles.cpp:175
+#, qt-format
+msgid "unexpected end of file at line %1 ('%2')"
+msgstr ""
+
+#: src/subtitles.cpp:199 src/subtitles.cpp:211 src/subtitles.cpp:225
+#, qt-format
+msgid "invalid line %1 ('%2')"
+msgstr ""
+
+#: src/subtitles.cpp:233
+#, qt-format
+msgid "Gotten smaller time offset than previous at line %1 in subtitles file '%2'."
+msgstr ""
+
+#: src/subtitles.cpp:279
+msgid "there is no subtitles in this file"
+msgstr ""
