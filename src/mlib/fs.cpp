@@ -1211,7 +1211,10 @@ ssize_t unix_read(int fd, void* buf, size_t size, bool non_block) throw(m::Sys_e
 				M_THROW_SYS(errno);
 		}
 		else
+		{
+			errno = 0;
 			return readed_bytes;
+		}
 	}
 }
 

@@ -289,7 +289,8 @@ void Mplayer_impl::operator()(void)
 		#ifndef DEVELOP_MODE
 			try
 			{
-				m::fs::unix_write(STDOUT_FILENO, &byte, sizeof byte);
+							#warning
+//				m::fs::unix_write(STDOUT_FILENO, &byte, sizeof byte);
 			}
 			catch(m::Exception& e)
 			{
@@ -307,7 +308,8 @@ void Mplayer_impl::operator()(void)
 					#ifndef DEVELOP_MODE
 						try
 						{
-							m::fs::unix_write(STDOUT_FILENO, buf, readed_bytes);
+							#warning
+//							m::fs::unix_write(STDOUT_FILENO, buf, readed_bytes);
 						}
 						catch(m::Exception& e)
 						{

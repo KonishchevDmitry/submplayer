@@ -445,7 +445,7 @@ struct Main_window::Private
 			}
 			catch(m::Exception& e)
 			{
-				MLIB_SW(__("Unable to write data to the mplayer stdio: %1.", EE(e)));
+				MLIB_W(__("Unable to write data to the mplayer stdio: %1.", EE(e)));
 			}
 		}
 
@@ -468,6 +468,7 @@ struct Main_window::Private
 		// клавиши-команды.
 		char buf[10];
 		ssize_t readed_bytes;
+		bool eof;
 
 		MLIB_D("Gotten data from stdin.");
 
@@ -477,8 +478,10 @@ struct Main_window::Private
 		}
 		catch(m::Exception& e)
 		{
-			MLIB_SW(__("Error while reading from stdin: %1.", EE(e)));
+			MLIB_W(__("Error while reading from stdin: %1.", EE(e)));
 		}
+
+		eof = !errno;
 
 		try
 		{
@@ -487,10 +490,10 @@ struct Main_window::Private
 		}
 		catch(m::Exception& e)
 		{
-			MLIB_SW(__("Unable to write data to the mplayer stdio: %1.", EE(e)));
+			MLIB_W(__("Unable to write data to the mplayer stdio: %1.", EE(e)));
 		}
 
-		return true;
+		return !eof;
 	}
 
 
