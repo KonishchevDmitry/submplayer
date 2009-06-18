@@ -15,6 +15,7 @@
 
 			namespace libconfig
 			{
+				class Config;
 				class Setting;
 			}
 
@@ -64,6 +65,7 @@
 					using namespace ::libtorrent;
 
 					class Torrent_file;
+					class Torrent_metadata;
 				}
 
 				namespace lt = ::m::libtorrent;

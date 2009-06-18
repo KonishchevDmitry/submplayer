@@ -1273,7 +1273,7 @@ void unix_utime(const std::string& path, const Stat& file_stat)
 
 
 
-ssize_t unix_write(int fd, void* buf, size_t size, bool non_block) throw(m::Sys_exception)
+ssize_t unix_write(int fd, const void* buf, size_t size, bool non_block) throw(m::Sys_exception)
 {
 	ssize_t written_bytes;
 

@@ -62,6 +62,24 @@ struct Torrent_file
 
 
 
+/// Предоставляет расширенную информацию о торренте, которой нет в
+/// lt::torrent_info.
+class Torrent_metadata
+{
+	public:
+		Torrent_metadata(
+			const lt::torrent_info& info,
+			const std::string& publisher_url
+		);
+
+
+	public:
+		lt::torrent_info	info;
+		std::string			publisher_url;
+};
+
+
+
 /// Возвращает список путей скачанных файлов торрента torrent_handle.
 std::vector<std::string>	get_torrent_downloaded_files_paths(const libtorrent::torrent_handle& torrent_handle) throw(libtorrent::invalid_handle);
 
@@ -74,18 +92,18 @@ std::string					get_torrent_file_path(const std::string& file_path) throw(m::Exc
 std::vector<Torrent_file>	get_torrent_files(const libtorrent::torrent_info& torrent_info) throw(m::Exception);
 
 /// Возвращает списк файлов торрента torrent_path.
-std::vector<Torrent_file>	get_torrent_files(const std::string& torrent_path) throw(m::Exception);
+std::vector<Torrent_file>	get_torrent_files(const std::string& torrent_path, const std::string& encoding) throw(m::Exception);
 
 /// Возвращает список путей файлов торрента torrent_info.
 std::vector<std::string>	get_torrent_files_paths(const libtorrent::torrent_info& torrent_info);
 
 /// Возвращает libtorrent::torrent_info, соответствующий
 /// торренту, данные которого хранятся в буфере.
-libtorrent::torrent_info	get_torrent_info(const m::Buffer& torrent_data) throw(m::Exception);
+Torrent_metadata			get_torrent_metadata(const m::Buffer& torrent_data, const std::string& encoding) throw(m::Exception);
 
 /// Возвращает libtorrent::torrent_info, соответствующий
 /// торренту torrent_path.
-libtorrent::torrent_info	get_torrent_info(const std::string& torrent_path) throw(m::Exception);
+Torrent_metadata			get_torrent_metadata(const std::string& torrent_path, const std::string& encoding) throw(m::Exception);
 
 /// Возвращает список трекеров торрента.
 std::vector<std::string>	get_torrent_trackers(const libtorrent::torrent_handle& torrent_handle) throw(lt::invalid_handle);

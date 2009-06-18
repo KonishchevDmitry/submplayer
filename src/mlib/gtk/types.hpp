@@ -28,6 +28,7 @@
 			class ComboBox;
 			class Dialog;
 			class Entry;
+			class EventBox;
 			class FileChooserDialog;
 			class LinkButton;
 			class ListStore;
@@ -43,12 +44,28 @@
 			class Widget;
 			class Window;
 		}
+
+		namespace m { namespace gtk {
+			class Link_button;
+		}}
 	#endif
 
 	#ifdef MLIB_ENABLE_GLADE
 		namespace Gnome { namespace Glade {
 			class Xml;
 		}}
+
+		#include <glibmm/refptr.h>
+
+		namespace m { namespace gtk {
+			typedef ::Glib::RefPtr< ::Gnome::Glade::Xml > Glade_xml;
+		}}
+	#endif
+
+	#ifdef MLIB_ENABLE_ALIASES
+		#ifdef MLIB_ENABLE_GLADE
+			using m::gtk::Glade_xml;
+		#endif
 	#endif
 
 #endif

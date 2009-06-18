@@ -22,13 +22,18 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <signal.h>
+#include <termios.h>
+#include <unistd.h>
 
+#include <cerrno>
 #include <clocale>
 
 #include <iostream>
 #include <memory>
 
 #include <boost/filesystem.hpp>
+
+#include <gdk/gdk.h>
 
 #include <gtkmm/main.h>
 #include <gtkmm/stock.h>
@@ -43,9 +48,71 @@
 
 namespace
 {
+	/// Атрибуты терминального интерфейса, которые имел стандартный ввод во время запуска программы.
+	struct termios	ORIG_TIO;
+
+	/// Были ли эти опции изменены.
+	bool			TIO_CHANGED = false;
+
+
+
+	/// Отключает строковую буферизацию стандартного ввода.
+	void disable_stdin_buffering(void);
+
+	/// Производит некоторые дополнительные действия, которые необходимо
+	/// выполнить перед завершением программы.
+	void exit_wrap(int status) __attribute__ ((__noreturn__));
+
+	/// Если в терминальный интерфейс стандартного ввода были внесены
+	/// какие-либо изменения - возвращает их к исходному состоянию.
+	void rollback_stdin_tio_changes(void);
+
 	void sigchld_handler(int signal_no);
 	void usage(void);
 	void warning_function(const char* file, const int line, const std::string& title, const std::string& message);
+
+
+
+	void disable_stdin_buffering(void)
+	{
+		struct termios tio;
+
+		if(tcgetattr(STDIN_FILENO, &tio))
+			MLIB_W(__("Can't get terminal interface attributes: %1.", EE(errno)));
+
+		if(!TIO_CHANGED)
+			ORIG_TIO = tio;
+
+		tio.c_lflag &= ~( ICANON | ECHO );
+		tio.c_cc[VMIN] = 1;
+		tio.c_cc[VTIME] = 0;
+
+		if(tcsetattr(STDIN_FILENO, TCSANOW, &tio))
+			MLIB_W(__("Can't set terminal interface attributes: %1.", EE(errno)));
+		else
+			TIO_CHANGED = true;
+	}
+
+
+
+	void exit_wrap(int status)
+	{
+		rollback_stdin_tio_changes();
+		exit(status);
+	}
+
+
+
+	void rollback_stdin_tio_changes(void)
+	{
+		if(TIO_CHANGED)
+		{
+			if(tcsetattr(STDIN_FILENO, TCSANOW, &ORIG_TIO))
+				MLIB_SW(__("Can't set terminal interface attributes: %1.", EE(errno)));
+			else
+				TIO_CHANGED = false;
+		}
+	}
 
 
 
@@ -58,6 +125,7 @@ namespace
 
 	void warning_function(const char* file, const int line, const std::string& title, const std::string& message)
 	{
+
 		std::cerr
 			#ifdef DEBUG_MODE
 				<< U2L(m::get_log_debug_prefix(file, line))
@@ -71,7 +139,7 @@ namespace
 
 		std::cerr.flush();
 
-		exit(EXIT_FAILURE);
+		exit_wrap(EXIT_FAILURE);
 	}
 
 
@@ -84,7 +152,7 @@ namespace
 			APP_UNIX_NAME
 		)) << std::endl;
 
-		exit(EXIT_FAILURE);
+		exit_wrap(EXIT_FAILURE);
 	}
 }
 
@@ -240,10 +308,27 @@ int main(int argc, char *argv[])
 		else
 		{
 			Glib::thread_init();
+			gdk_threads_init();
 
 			std::auto_ptr<Gtk::Main> gtk_main = std::auto_ptr<Gtk::Main>(new Gtk::Main(argc, argv));
 			Glib::set_prgname(APP_UNIX_NAME);
 			Glib::set_application_name(APP_NAME);
+
+			// Отключаем строковую буферизацию стандартного ввода -->
+				switch(isatty(STDIN_FILENO))
+				{
+					case -1:
+						MLIB_W(__("Can't get stdin type: %1.", EE(errno)));
+						break;
+
+					case 0:
+						break;
+
+					default:
+						disable_stdin_buffering();
+						break;
+				}
+			// Отключаем строковую буферизацию стандартного ввода <--
 
 			Main_window window(subtitles, mplayer_args);
 			subtitles.clear();
@@ -253,6 +338,6 @@ int main(int argc, char *argv[])
 
 	MLIB_D("Exiting...");
 
-    return EXIT_SUCCESS;
+    exit_wrap(EXIT_SUCCESS);
 }
 

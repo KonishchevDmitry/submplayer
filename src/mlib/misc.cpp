@@ -464,7 +464,7 @@ void close_all_fds(void) throw(m::Exception)
 	if(getrlimit(RLIMIT_OFILE, &limits))
 		M_THROW(__("Can't get max opened files limit: %1.", EE(errno)));
 
-	for(int fd = STDERR_FILENO + 1; fd < limits.rlim_max; fd++)
+	for(int fd = STDERR_FILENO + 1; fd < (int) limits.rlim_max; fd++)
 		close(fd);
 }
 
@@ -558,6 +558,18 @@ void setenv(const std::string& name, const std::string& value, bool overwrite) t
 {
 	if(::setenv(U2L(name).c_str(), U2L(value).c_str(), overwrite))
 		M_THROW(EE(errno));
+}
+
+
+
+int unix_dup(int fd) throw(m::Exception)
+{
+	int new_fd = dup(fd);
+
+	if(new_fd == -1)
+		M_THROW(__("Can't duplicate a file descriptor: %1.", EE(errno)));
+	else
+		return new_fd;
 }
 
 

@@ -26,6 +26,8 @@
 	#include <climits>
 	#include <cstring>
 	#include <sstream>
+	#include <string>
+	#include <vector>
 
 	#ifdef ENABLE_NLS
 		#include <libintl.h>
@@ -55,9 +57,15 @@
 		#endif
 	#endif
 
+	/// Идентификатор кодировки UTF-8, используемый iconv и прочими
+	/// библиотеками.
+	#define MLIB_UTF_CHARSET_NAME	"UTF-8"
+
 
 	namespace m
 	{
+		typedef std::vector<std::string> String_vector;
+
 		#ifdef MLIB_ENABLE_FORMAT
 			/// Обертка над boost::format.
 			///
@@ -110,6 +118,19 @@
 					operator Glib::ustring(void) const;
 			};
 		#endif
+
+
+
+		/// Список кодировок, доступных для перекодирования функцией convert(),
+		/// завершаемый элементом { NULL, NULL }.
+		extern struct Charset
+		{
+			const char*	title;
+			const char*	name;
+		} const AVAILABLE_CHARSETS[];
+
+		/// Порядковый номер кодировки UTF-8 в AVAILABLE_CHARSETS.
+		extern const size_t UTF_CHARSET_ID;
 
 
 
@@ -179,6 +200,14 @@
 		/// (включая этот символ).
 		std::string		_Q(const char* string);
 
+		/// Преобразовывает строку из одной кодировки в другую.
+		std::string		convert(const std::string& string, const std::string& to_charset, const std::string& from_charset = MLIB_UTF_CHARSET_NAME);
+
+	#ifdef MLIB_ENABLE_LIBTORRENT
+		/// Возвращает имя кодировки, в которой libtorrent необходимо передавать имена файлов.
+		std::string		get_libtorrent_files_charset(void);
+	#endif
+
 		/// Возвращает строковое представление периода времени вида
 		/// 1d 5h 50m.
 		std::string		get_time_duration_string(time_t time, bool show_zero_values = true);
@@ -210,6 +239,12 @@
 		/// пробельных символов).
 		bool			is_empty_string(const Glib::ustring& string);
 
+		/// Проверяет, вляется ли строка URL (http) адресом.
+		bool			is_url_string(const std::string& string);
+
+		/// Проверяет, известна ли данная кодировка механизму перекодировки строк.
+		bool			is_valid_encoding_name(const std::string& encoding);
+
 		/// Проверяет, является ли строка валидной UTF-8 строкой.
 		bool			is_valid_utf(const Glib::ustring& string);
 
@@ -221,6 +256,10 @@
 
 		/// Возвращает строковое представление скорости передачи данных
 		std::string		speed_to_string(Speed speed, bool show_zero_values = true);
+
+		/// Разделяет строку на подстроки, при этом проверяя, чтобы в
+		/// результирующем векторе не было пустых строк.
+		String_vector	split(const std::string& string, char separator);
 
 		/// Возвращает строковое представление времени в формате "%H:%M:%S %d.%m.%Y".
 		std::string		time_to_string_with_date(Time time);
@@ -234,6 +273,11 @@
 
 		/// Делает первую букву строки заглавной.
 		Glib::ustring	uppercase_first(const Glib::ustring& string);
+
+		/// Делает строку "валидной" UTF-8 строкой, если она таковой не
+		/// является.
+		inline
+		Glib::ustring	validate_utf(const Glib::ustring& string);
 
 		/// Преобразовывает строку из Unicode в кодировку локали.
 		inline
@@ -250,6 +294,8 @@
 	#include "string.hh"
 
 	#ifdef MLIB_ENABLE_ALIASES
+		using m::String_vector;
+
 		using m::_;
 		using m::_Q;
 

@@ -19,38 +19,53 @@
 
 
 #ifdef MLIB_ENABLE_GTK
-#ifndef HEADER_MLIB_GTK_DIALOG
-	#define HEADER_MLIB_GTK_DIALOG
+#ifndef HEADER_MLIB_GTK_LINK_BUTTON
+	#define HEADER_MLIB_GTK_LINK_BUTTON
 
-	#include <gtkmm/dialog.h>
-	#include <gtkmm/window.h>
-
-	#include "misc.hpp"
-	#include "window_settings.hpp"
+	#include <gtkmm/box.h>
 
 
 	namespace m { namespace gtk {
 
-	class Dialog: public Gtk::Dialog
+	/// В Gtk::LinkButton и GtkLinkButton по какой-то причине не работает
+	/// функция set_uri(). Данная обертка позволяет это сделать.
+	class Link_button: public Gtk::HBox
 	{
 		public:
-			typedef Window_settings Settings;
+			Link_button(const Glib::ustring& uri = "");
+
+
+		private:
+			Gtk::LinkButton*	link_button;
+			sigc::signal<void>	clicked_signal;
 
 
 		public:
-			Dialog(BaseObjectType* cobject);
-			Dialog(Gtk::Window& parent_window, const std::string& title, const Settings& settings = Settings(), int width = -1, int height = -1, int border_width = m::gtk::WINDOW_BORDER_WIDTH);
+			/// Аналог Gtk::LinkButton::get_uri().
+			Glib::ustring		get_uri(void) const;
 
-		public:
-			/// Предназначена для инициализации виджета после конструирования
-			/// его из Glade-представления.
-			virtual
-			void	init(Gtk::Window& parent_window);
+		#if GTK_CHECK_VERSION(2, 14, 0)
+			/// Аналог Gtk::LinkButton::get_visited().
+			bool				get_visited(void) const;
+		#endif
 
+			/// Аналог Gtk::LinkButton::set_uri().
+			void				set_uri(const Glib::ustring& uri);
 
-		public:
-			/// Сохраняет текущие настройки.
-			void save_settings(Settings& settings) const;
+		#if GTK_CHECK_VERSION(2, 14, 0)
+			/// Аналог Gtk::LinkButton::set_visited().
+			void				set_visited(bool visited = true);
+		#endif
+
+			/// Аналог Gtk::LinkButton::signal_clicked().
+			sigc::signal<void>&	signal_clicked(void);
+
+		private:
+			/// Создает новую кнопку внутри контейнера.
+			void				recreate(const Glib::ustring& uri);
+
+			/// Обработчик сигнала на нажатие кнопки.
+			void				on_clicked_cb(void);
 	};
 
 	}}
