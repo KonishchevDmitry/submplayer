@@ -19,42 +19,86 @@
 
 
 #ifdef MLIB_ENABLE_GTK
-#ifndef HEADER_MLIB_GTK_DIALOG
-	#define HEADER_MLIB_GTK_DIALOG
-
-	#include <gtkmm/dialog.h>
-	#include <gtkmm/window.h>
-
-	#include "misc.hpp"
-	#include "window_settings.hpp"
 
 
-	namespace m { namespace gtk {
+#include <gtk/gtkversion.h>
 
-	class Dialog: public Gtk::Dialog
+#include <gtkmm/linkbutton.h>
+
+#include "link_button.hpp"
+
+
+namespace m { namespace gtk {
+
+Link_button::Link_button(const Glib::ustring& uri)
+:
+	link_button(NULL)
+{
+	this->recreate(uri);
+}
+
+
+
+Glib::ustring Link_button::get_uri(void) const
+{
+	return this->link_button->get_uri();
+}
+
+
+
+#if GTK_CHECK_VERSION(2, 14, 0)
+	bool Link_button::get_visited(void) const
 	{
-		public:
-			typedef Window_settings Settings;
-
-
-		public:
-			Dialog(BaseObjectType* cobject);
-			Dialog(Gtk::Window& parent_window, const std::string& title, const Settings& settings = Settings(), int width = -1, int height = -1, int border_width = m::gtk::WINDOW_BORDER_WIDTH);
-
-		public:
-			/// Предназначена для инициализации виджета после конструирования
-			/// его из Glade-представления.
-			virtual
-			void	init(Gtk::Window& parent_window);
-
-
-		public:
-			/// Сохраняет текущие настройки.
-			void save_settings(Settings& settings) const;
-	};
-
-	}}
-
+		return this->link_button->get_visited();
+	}
 #endif
+
+
+
+void Link_button::set_uri(const Glib::ustring& uri)
+{
+	if(this->link_button->get_uri() != uri)
+		this->recreate(uri);
+}
+
+
+
+void Link_button::on_clicked_cb(void)
+{
+	this->clicked_signal();
+}
+
+
+
+void Link_button::recreate(const Glib::ustring& uri)
+{
+	if(this->link_button)
+		this->remove(*this->link_button);
+
+	this->link_button = Gtk::manage(new Gtk::LinkButton(uri));
+	this->link_button->signal_clicked().connect(
+		sigc::mem_fun(*this, &Link_button::on_clicked_cb));
+	this->link_button->show();
+	this->add(*this->link_button);
+}
+
+
+
+#if GTK_CHECK_VERSION(2, 14, 0)
+	void Link_button::set_visited(bool visited)
+	{
+		this->link_button->set_visited(visited);
+	}
+#endif
+
+
+
+sigc::signal<void>& Link_button::signal_clicked(void)
+{
+	return this->clicked_signal;
+}
+
+}}
+
 #endif
 

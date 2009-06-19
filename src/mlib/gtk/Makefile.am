@@ -1,6 +1,8 @@
 noinst_LIBRARIES = libmlib_gtk.a
 
 libmlib_gtk_a_SOURCES = \
+	action.cpp \
+	action.hpp \
 	controlled_list.cpp \
 	controlled_list.hpp \
 	dialog.cpp \
@@ -8,6 +10,8 @@ libmlib_gtk_a_SOURCES = \
 	glade.cpp \
 	glade.hh \
 	glade.hpp \
+	link_button.cpp \
+	link_button.hpp \
 	misc.cpp \
 	misc.hh \
 	misc.hpp \

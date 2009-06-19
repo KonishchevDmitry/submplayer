@@ -24,6 +24,8 @@
 
 	#include <boost/shared_ptr.hpp>
 
+	#include <glibmm/main.h>
+
 	#include <mlib/gtk/window.hpp>
 
 
@@ -50,8 +52,14 @@
 			/// Обработчик сигнала на закрытие окна.
 			bool	on_delete_cb(GdkEventAny* event);
 
+			/// Обработчик сигнала на нажатие кнопки на клавиатуре.
+			bool	on_key_press_event_cb(const GdkEventKey* event);
+
 			/// Обработчик сигнала на закрытие плеера.
 			void	on_player_closed_cb(void);
+
+			/// Обработчик сигнала на поступление данных в stdin.
+			bool	on_stdin_data(Glib::IOCondition condition);
 
 			/// Обработчик сигнала на изменение текущей позиции в проигрываемом
 			/// файле.

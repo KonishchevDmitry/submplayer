@@ -73,6 +73,9 @@ class Mplayer_impl: public boost::noncopyable
 		Glib::Dispatcher			mplayer_quit_signal;
 
 
+		/// Файловый дескриптор стандатного ввода MPlayer'а.
+		m::File_holder				mplayer_stdin;
+
 		/// Файловый дескриптор стандатного вывода MPlayer'а.
 		m::File_holder				mplayer_stdout;
 
@@ -94,6 +97,9 @@ class Mplayer_impl: public boost::noncopyable
 
 		/// Запускает MPlayer.
 		void				start(const std::vector<std::string>& args) throw(m::Exception);
+
+		/// Записывает данные в стандартный поток ввода MPlayer'а.
+		void				write_to_stdio(const void* data, size_t size) throw(m::Exception);
 
 	private:
 		/// Обрабатывает полученную от MPlayer'а логическую строку.
@@ -194,9 +200,16 @@ void Mplayer_impl::start(const std::vector<std::string>& args) throw(m::Exceptio
 		M_THROW(_("MPlayer is already started."));
 
 
+	m::File_holder child_stdin;
 	m::File_holder child_stdout;
 
 	// Создаем средства коммуникации между MPlayer'ом и нашей программой -->
+	{
+		// Генерирует m::Exception
+		std::pair<int, int> pipe_fds = m::unix_pipe();
+		this->mplayer_stdin.set(pipe_fds.second);
+		child_stdin.set(pipe_fds.first);
+	}
 	{
 		// Генерирует m::Exception
 		std::pair<int, int> pipe_fds = m::unix_pipe();
@@ -204,7 +217,6 @@ void Mplayer_impl::start(const std::vector<std::string>& args) throw(m::Exceptio
 		child_stdout.set(pipe_fds.second);
 	}
 	// Создаем средства коммуникации между MPlayer'ом и нашей программой <--
-
 
 	if(m::unix_fork())
 	{
@@ -220,6 +232,10 @@ void Mplayer_impl::start(const std::vector<std::string>& args) throw(m::Exceptio
 
 		try
 		{
+			// Генерирует m::Exception
+			m::unix_dup(child_stdin.get(), STDIN_FILENO);
+			child_stdin.reset();
+
 			// Генерирует m::Exception
 			m::unix_dup(child_stdout.get(), STDOUT_FILENO);
 			child_stdout.reset();
@@ -240,6 +256,13 @@ void Mplayer_impl::start(const std::vector<std::string>& args) throw(m::Exceptio
 			MLIB_W(__("Starting MPlayer failed. %1", EE(e)));
 		}
 	}
+}
+
+
+
+void Mplayer_impl::write_to_stdio(const void* data, size_t size) throw(m::Exception)
+{
+	m::fs::unix_write(this->mplayer_stdin.get(), data, size);
 }
 
 
@@ -379,5 +402,13 @@ void Mplayer_impl::operator()(void)
 	{
 		this->impl->start(args);
 	}
+
+
+
+	void Mplayer::write_to_stdio(const void* data, size_t size) throw(m::Exception)
+	{
+		this->impl->write_to_stdio(data, size);
+	}
+
 // Mplayer <--
 

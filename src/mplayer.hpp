@@ -60,6 +60,9 @@
 
 			/// Запускает Mplayer.
 			void				start(const std::vector<std::string>& args) throw(m::Exception);
+
+			/// Записывает данные в стандартный поток ввода MPlayer'а.
+			void				write_to_stdio(const void* data, size_t size) throw(m::Exception);
 	};
 
 #endif
