@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: submplayer 0.1\n"
+"Project-Id-Version: submplayer 0.2\n"
 "Report-Msgid-Bugs-To: konishchev@gmail.com\n"
-"POT-Creation-Date: 2009-05-25 20:52+0400\n"
+"POT-Creation-Date: 2009-06-19 19:09+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -195,12 +195,16 @@ msgstr ""
 msgid "Can't read data from inotify descriptor: %1."
 msgstr ""
 
-#: src/mlib/libtorrent.cpp:74
+#: src/mlib/libtorrent.cpp:83
 #, qt-format
 msgid "Invalid torrent file path '%1'."
 msgstr ""
 
-#: src/mlib/libtorrent.cpp:202
+#: src/mlib/libtorrent.cpp:345
+msgid "invalid torrent file"
+msgstr ""
+
+#: src/mlib/libtorrent.cpp:365
 #, qt-format
 msgid "Error while reading torrent file '%1': %2."
 msgstr ""
@@ -217,12 +221,12 @@ msgstr ""
 msgid "Buffer positioning error."
 msgstr ""
 
-#: src/mlib/misc.cpp:307 src/mlib/misc.cpp:616
+#: src/mlib/misc.cpp:307 src/mlib/misc.cpp:628
 #, qt-format
 msgid "Can't create a pipe: %1."
 msgstr ""
 
-#: src/mlib/misc.cpp:316 src/mplayer.cpp:280 src/mplayer.cpp:298
+#: src/mlib/misc.cpp:316 src/mplayer.cpp:303 src/mplayer.cpp:321
 #, qt-format
 msgid "Can't set flags for a pipe: %1."
 msgstr ""
@@ -272,70 +276,70 @@ msgstr ""
 msgid "Running command '%1' failed: %2."
 msgstr ""
 
-#: src/mlib/misc.cpp:568
+#: src/mlib/misc.cpp:570 src/mlib/misc.cpp:580
 #, qt-format
 msgid "Can't duplicate a file descriptor: %1."
 msgstr ""
 
-#: src/mlib/misc.cpp:604
+#: src/mlib/misc.cpp:616
 #, qt-format
 msgid "Can't fork the process: %1."
 msgstr ""
 
-#: src/mlib/string.cpp:58
-msgid "0m"
-msgstr ""
-
-#: src/mlib/string.cpp:75 src/mlib/string.cpp:116
-msgid "M"
-msgstr ""
-
-#: src/mlib/string.cpp:78 src/mlib/string.cpp:119 src/mlib/string.cpp:128
-msgid "d"
-msgstr ""
-
-#: src/mlib/string.cpp:81 src/mlib/string.cpp:131 src/mlib/string.cpp:139
-msgid "h"
-msgstr ""
-
-#: src/mlib/string.cpp:84 src/mlib/string.cpp:142 src/mlib/string.cpp:150
-msgid "m"
-msgstr ""
-
-#: src/mlib/string.cpp:153 src/mlib/string.cpp:159
-msgid "s"
-msgstr ""
-
-#: src/mlib/string.cpp:200 src/mlib/string.cpp:375 src/mlib/string.hh:194
-#: src/mlib/string.hh:209 src/mlib/string.hh:224 src/mlib/string.hh:239
-#: src/mlib/string.hh:253 src/mlib/string.hh:268 src/mlib/string.hh:283
-#: src/mlib/string.hh:298 src/mlib/string.hh:313 src/mlib/string.hh:328
-#: src/mlib/string.hh:343 src/mlib/string.hh:358 src/mlib/string.hh:373
-#: src/mlib/string.hh:388
+#: src/mlib/string.cpp:150 src/mlib/string.cpp:342 src/mlib/string.cpp:526
+#: src/mlib/string.hh:194 src/mlib/string.hh:209 src/mlib/string.hh:224
+#: src/mlib/string.hh:239 src/mlib/string.hh:253 src/mlib/string.hh:268
+#: src/mlib/string.hh:283 src/mlib/string.hh:298 src/mlib/string.hh:313
+#: src/mlib/string.hh:328 src/mlib/string.hh:343 src/mlib/string.hh:358
+#: src/mlib/string.hh:373 src/mlib/string.hh:388
 msgid "[[Invalid encoding]]"
 msgstr ""
 
-#: src/mlib/string.cpp:221
+#: src/mlib/string.cpp:172
+msgid "0m"
+msgstr ""
+
+#: src/mlib/string.cpp:189 src/mlib/string.cpp:230
+msgid "M"
+msgstr ""
+
+#: src/mlib/string.cpp:192 src/mlib/string.cpp:233 src/mlib/string.cpp:242
+msgid "d"
+msgstr ""
+
+#: src/mlib/string.cpp:195 src/mlib/string.cpp:245 src/mlib/string.cpp:253
+msgid "h"
+msgstr ""
+
+#: src/mlib/string.cpp:198 src/mlib/string.cpp:256 src/mlib/string.cpp:264
+msgid "m"
+msgstr ""
+
+#: src/mlib/string.cpp:267 src/mlib/string.cpp:273
+msgid "s"
+msgstr ""
+
+#: src/mlib/string.cpp:363
 msgid "GB"
 msgstr ""
 
-#: src/mlib/string.cpp:228 src/mlib/string.cpp:238
+#: src/mlib/string.cpp:370 src/mlib/string.cpp:380
 msgid "MB"
 msgstr ""
 
-#: src/mlib/string.cpp:245 src/mlib/string.cpp:255
+#: src/mlib/string.cpp:387 src/mlib/string.cpp:397
 msgid "KB"
 msgstr ""
 
-#: src/mlib/string.cpp:262 src/mlib/string.cpp:269
+#: src/mlib/string.cpp:404 src/mlib/string.cpp:411
 msgid "B"
 msgstr ""
 
-#: src/mlib/string.cpp:289
+#: src/mlib/string.cpp:431
 msgid "0 B/s"
 msgstr ""
 
-#: src/mlib/string.cpp:294
+#: src/mlib/string.cpp:436
 msgid "/s"
 msgstr ""
 
@@ -347,53 +351,88 @@ msgstr ""
 msgid "Invalid format string."
 msgstr ""
 
-#: src/main.cpp:82
+#: src/main.cpp:81
+#, qt-format
+msgid "Can't get terminal interface attributes: %1."
+msgstr ""
+
+#: src/main.cpp:91 src/main.cpp:111
+#, qt-format
+msgid "Can't set terminal interface attributes: %1."
+msgstr ""
+
+#: src/main.cpp:150
 #, qt-format
 msgid ""
 "Usage:\n"
 "%1 video_file [other mplayer options]"
 msgstr ""
 
-#: src/main.cpp:201
+#: src/main.cpp:269
 #, qt-format
 msgid "Error while reading directory '%1': %2."
 msgstr ""
 
-#: src/main.cpp:220
+#: src/main.cpp:288
 #, qt-format
 msgid "Error while reading subtitles file '%1': %2."
 msgstr ""
 
-#: src/main.cpp:237 src/mplayer.cpp:236
+#: src/main.cpp:305 src/mplayer.cpp:252
 #, qt-format
 msgid "Starting MPlayer failed: %1."
 msgstr ""
 
-#: src/mplayer.cpp:194
+#: src/main.cpp:321
+#, qt-format
+msgid "Can't get stdin type: %1."
+msgstr ""
+
+#: src/main_window.cpp:388
+#, qt-format
+msgid "Can't get flags for the stdin: %1."
+msgstr ""
+
+#: src/main_window.cpp:391
+#, qt-format
+msgid "Can't set flags for the stdin: %1."
+msgstr ""
+
+#: src/main_window.cpp:448 src/main_window.cpp:493
+#, qt-format
+msgid "Unable to write data to the mplayer stdio: %1."
+msgstr ""
+
+#: src/main_window.cpp:481
+#, qt-format
+msgid "Error while reading from stdin: %1."
+msgstr ""
+
+#: src/mplayer.cpp:200
 msgid "MPlayer is already started."
 msgstr ""
 
-#: src/mplayer.cpp:240
+#: src/mplayer.cpp:256
 #, qt-format
 msgid "Starting MPlayer failed. %1"
 msgstr ""
 
-#: src/mplayer.cpp:261
+#: src/mplayer.cpp:284
 #, qt-format
 msgid "Can't get flags for a pipe: %1."
 msgstr ""
 
-#: src/mplayer.cpp:273 src/mplayer.cpp:291
+#: src/mplayer.cpp:296 src/mplayer.cpp:314
 #, qt-format
 msgid "Can't write data to stdout: %1."
 msgstr ""
 
-#: src/mplayer.cpp:333
+#: src/mplayer.cpp:356
 #, qt-format
 msgid "invalid output - no any line delimiter over %1 bytes"
 msgstr ""
 
-#: src/mplayer.cpp:340
+#: src/mplayer.cpp:363
 #, qt-format
 msgid "Error while reading MPlayer output: %1."
 msgstr ""
