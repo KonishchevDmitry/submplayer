@@ -22,12 +22,14 @@
 	#define MLIB_ENABLE_ALIASES
 #endif
 
-#include <cerrno>
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
 #include <utime.h>
+
+#include <cerrno>
+#include <cstdio>
 
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/path.hpp>
@@ -1222,7 +1224,7 @@ ssize_t unix_read(int fd, void* buf, size_t size, bool non_block) throw(m::Sys_e
 
 void unix_rename(const std::string& from, const std::string& to) throw(m::Sys_exception)
 {
-	if(rename(U2L(from).c_str(), U2L(to).c_str()))
+	if(std::rename(U2L(from).c_str(), U2L(to).c_str()))
 		M_THROW_SYS(errno);
 }
 

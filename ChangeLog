@@ -1,3 +1,8 @@
+0.2.1 (2009.10.10)
+-----
+[*] Fixed compile error under Ubuntu 9.10.
+
+
 0.2 (2009.06.19)
 -----
 [+] Keys, which user press in the submplayer window now are transmited to the
