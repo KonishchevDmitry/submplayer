@@ -1,3 +1,7 @@
+[*] Submplayer did not read files with byte order mark
+(http://en.wikipedia.org/wiki/Byte_order_mark).
+
+
 0.2.1 (2009.10.10)
 -----
 [*] Fixed compile error under Ubuntu 9.10.
