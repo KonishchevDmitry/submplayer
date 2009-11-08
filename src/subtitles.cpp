@@ -144,9 +144,17 @@ void Subtitles::load(const std::string& file_path) throw(m::Exception)
 								file.unget();
 						}
 						case '\n':
+						{
 							line = smart_convert(std::string(buf, buf + size));
+
+							// Отрезаем Byte order mark, если он присутствует
+							// (http://en.wikipedia.org/wiki/Byte_order_mark).
+							if(line_num == 1 && !line.empty() && line[0] == 0xFEFF)
+								line = line.substr(1);
+
 							work = false;
-							break;
+						}
+						break;
 
 						default:
 							buf[size++] = byte;

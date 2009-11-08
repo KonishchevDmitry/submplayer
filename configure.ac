@@ -1,4 +1,4 @@
-AC_INIT([submplayer], [0.2.1], [konishchev@gmail.com])
+AC_INIT([submplayer], [0.2.2], [konishchev@gmail.com])
 
 
 AC_CONFIG_SRCDIR([src/main.cpp])

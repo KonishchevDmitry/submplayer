@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: submplayer 0.2.1\n"
+"Project-Id-Version: submplayer 0.2.2\n"
 "Report-Msgid-Bugs-To: konishchev@gmail.com\n"
-"POT-Creation-Date: 2009-10-10 17:55+0400\n"
+"POT-Creation-Date: 2009-11-08 21:31+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -446,21 +446,21 @@ msgstr ""
 msgid "line %1 is too big"
 msgstr ""
 
-#: src/subtitles.cpp:175
+#: src/subtitles.cpp:183
 #, qt-format
 msgid "unexpected end of file at line %1 ('%2')"
 msgstr ""
 
-#: src/subtitles.cpp:199 src/subtitles.cpp:211 src/subtitles.cpp:225
+#: src/subtitles.cpp:207 src/subtitles.cpp:219 src/subtitles.cpp:233
 #, qt-format
 msgid "invalid line %1 ('%2')"
 msgstr ""
 
-#: src/subtitles.cpp:233
+#: src/subtitles.cpp:241
 #, qt-format
 msgid "Gotten smaller time offset than previous at line %1 in subtitles file '%2'."
 msgstr ""
 
-#: src/subtitles.cpp:279
+#: src/subtitles.cpp:287
 msgid "there is no subtitles in this file"
 msgstr ""
