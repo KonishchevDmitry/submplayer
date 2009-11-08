@@ -1,3 +1,4 @@
+0.2.2 (2009.11.08)
 [*] Submplayer did not read files with byte order mark
 (http://en.wikipedia.org/wiki/Byte_order_mark).
 
