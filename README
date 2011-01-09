@@ -1,5 +1,5 @@
-submplayer - A simple MPlayer wrapper for watching movies with subtitles
+submplayer - Simple MPlayer wrapper for watching movies with subtitles
 
 I used to use this program until I developed pytee. So I recommend you to take
-a look at pytee - it has more features and much convenient. You can get it at
+a look at pytee - it has more features and more convenient. You can get it at
 https://github.com/KonishchevDmitry/pytee.
