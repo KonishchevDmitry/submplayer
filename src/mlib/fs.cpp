@@ -32,7 +32,6 @@
 #include <cstdio>
 
 #include <boost/filesystem.hpp>
-#include <boost/filesystem/path.hpp>
 #include <boost/version.hpp>
 
 #include "fs.hpp"
@@ -48,7 +47,7 @@ namespace m
 {
 namespace error_string
 {
-	std::string get(const boost::fs::basic_filesystem_error<boost::fs::path>& error)
+	std::string get(const boost::filesystem::filesystem_error& error)
 	{
 		#if M_BOOST_GET_VERSION() < M_GET_VERSION(1, 35, 0)
 			M_LIBRARY_COMPATIBILITY
@@ -639,7 +638,11 @@ namespace fs
 
 				for(; it != this->end(); it++)
 					if(*it != "/" && *it != "." && *it != "")
-						path_components.push_back(*it);
+						#if BOOST_FILESYSTEM_VERSION < 3
+							path_components.push_back(*it);
+						#else
+							path_components.push_back(it->string());
+						#endif
 			}
 
 			{
@@ -891,8 +894,10 @@ void cp(const std::string& from, const std::string& to) throw(m::Exception)
 					{
 						#if BOOST_VERSION / 100 <= 1035
 							m::fs::cp( L2U((from_path / it->leaf()).string()), L2U((to_path / it->leaf()).string()) );
-						#else
+						#elif BOOST_VERSION / 100 < 1047
 							m::fs::cp( L2U((from_path / it->filename()).string()), L2U((to_path / it->filename()).string()) );
+						#else
+							m::fs::cp( L2U((from_path / it->path().filename()).string()), L2U((to_path / it->path().filename()).string()) );
 						#endif
 					}
 					catch(m::Exception& e)
@@ -1049,8 +1054,10 @@ void rm(const std::string& path) throw(m::Exception)
 							{
 								#if BOOST_VERSION / 100 <= 1035
 									rm( L2U((dir_path / it->leaf()).string()) );
-								#else
+                                #elif BOOST_VERSION / 100 < 1047
 									rm( L2U((dir_path / it->filename()).string()) );
+								#else
+									rm( L2U((dir_path / it->path().filename()).string()) );
 								#endif
 							}
 							catch(m::Exception& e)

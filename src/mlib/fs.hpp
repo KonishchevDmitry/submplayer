@@ -30,7 +30,7 @@
 	#include <sstream>
 	#include <string>
 
-	#include <boost/filesystem/path.hpp>
+	#include <boost/filesystem.hpp>
 	#include <boost/shared_ptr.hpp>
 
 	#include <glibmm/miscutils.h>
@@ -46,7 +46,7 @@
 		/// Возвращает строку с ошибкой, которая соответствует данному
 		/// исключению.
 		/// Используется функцией EE().
-		std::string		get(const boost::fs::basic_filesystem_error<boost::fs::path>& error);
+		std::string		get(const boost::filesystem::filesystem_error& error);
 	}
 
 
